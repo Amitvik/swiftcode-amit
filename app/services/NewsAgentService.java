@@ -24,11 +24,6 @@ public class NewsAgentService {
                     .setHeader("Authorization", "Bearer 054a388ef08e46c3beb61cd9a12dd13f")
                     .get();
             JsonNode response = responsePromise.thenApply(WSResponse::asJson).toCompletableFuture().get();
-            newsAgentResponse.query = response.get("result").get("parameters").get("keyword").asText().isEmpty() ?
-                    (response.get("result").get("parameters").get("source").asText().isEmpty()
-                            ? response.get("result").get("parameters").get("category").asText()
-                            : response.get("result").get("parameters").get("source").asText() )
-                    : response.get("result").get("parameters").get("keyword").asText() ;
 
         }catch (Exception e){
             e.printStackTrace();
